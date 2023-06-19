@@ -76,6 +76,17 @@ app.put('/citation', async (req, res) => {
     });
 })
 
+app.put('/citation/favori', async (req, res) => {
+    console.log(req.body.citationId)
+    db.citation.update({ favori: req.body.favori }, {
+        where: {
+            id: req.body.citationId
+        }
+    }).then(function (data) {
+        res.status(200).json(data);
+    });
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
